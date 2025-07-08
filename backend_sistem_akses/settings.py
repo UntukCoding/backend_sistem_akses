@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'backned_sistem_akses_main',
+    'corsheaders',
+    'rest_framework',
+    'django_apscheduler'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +79,17 @@ WSGI_APPLICATION = 'backend_sistem_akses.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "",  #// isi dengan nama database anda
+        "USER":"root",
+        "PASSWORD":"",
+        "HOST":"/opt/lampp/var/mysql/mysql.sock", # settingan host ini pada linux sedangkan pada windows itu masukkan localhost
+        "PORT":3306,
+        "OPTIONS":{
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
+            "charset": "utf8mb4",
+            "autocommit": True,
+        }
     }
 }
 
@@ -121,3 +134,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CONS_ORIGIN_ALLOW_ALL=True
+CONS_ALLOW_CREDENTIALS=True
+MEDIA_ROOT=BASE_DIR / 'media'
+MEDIA_URL='/media/'
+ALLOWED_HOSTS=['*']
+
